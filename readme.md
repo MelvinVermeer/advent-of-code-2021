@@ -10,3 +10,11 @@ If you want to test the code, run the following commands
 yarn install
 yarn test
 ```
+
+## Template
+
+Creating a new src, test and data file for a day is automated. To create a new set run call `yarn new <challenge>`. Example:
+
+```
+yarn new "Sonar Sweep"
+```
