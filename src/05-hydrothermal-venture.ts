@@ -47,6 +47,17 @@ const toPoints = ([a, b]: Line): Point[] => {
   return points;
 };
 
+const drawLine = (grid: Grid, line: Line): Grid => {
+  const points = toPoints(line);
+
+  for (const point of points) {
+    grid[point.y] = grid[point.y] || [];
+    grid[point.y][point.x] = (grid[point.y][point.x] || 0) + 1;
+  }
+
+  return grid;
+};
+
 export const countDangerousAreas = (
   data: string[],
   shouldIncludeDiagonal = false
