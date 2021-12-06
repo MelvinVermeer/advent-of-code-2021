@@ -1,13 +1,20 @@
+const sum = (a: number, b: number) => a + b;
+
 export const countFishAfterDays = (fish: number[], days: number): any => {
+  const countPerDueDate = fish.reduce(
+    (counts, fishDueDate) => {
+      counts[fishDueDate]++;
+      return counts;
+    },
+    [0, 0, 0, 0, 0, 0, 0, 0, 0]
+  );
+
   for (let day = 1; day <= days; day++) {
-    fish = fish.map((x) => x - 1);
-
-    const bornCount = fish.filter((x) => x === -1).length;
-    const babies = Array(bornCount).fill(8);
-
-    fish = fish.map((x) => (x === -1 ? 6 : x));
-    fish.push(...babies);
+    const babies = countPerDueDate[0];
+    countPerDueDate.shift();
+    countPerDueDate[6] += babies;
+    countPerDueDate.push(babies);
   }
 
-  return fish.length;
+  return countPerDueDate.reduce(sum, 0);
 };
