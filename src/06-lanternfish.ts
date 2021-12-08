@@ -1,4 +1,4 @@
-const sum = (a: number, b: number) => a + b;
+import { sum } from "./shared";
 
 export const countFishAfterDays = (fish: number[], days: number): any => {
   const countPerDueDate = fish.reduce(

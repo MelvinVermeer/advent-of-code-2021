@@ -1,4 +1,4 @@
-const sum = (a: number, b: number) => a + b;
+import { difference, sum } from "./shared";
 
 const calculateCrab = (a: number, b: number) => {
   let fuel = 0;
@@ -11,7 +11,7 @@ const calculateCrab = (a: number, b: number) => {
   return fuel;
 };
 
-const calculateHuman = (a: number, b: number) => Math.abs(a - b);
+const calculateHuman = difference;
 
 export const calculateMinimumFuel = (
   crabPositions: number[],

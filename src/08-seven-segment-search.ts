@@ -1,3 +1,5 @@
+import { arrayIncludes, clone, compose, sum } from "./shared";
+
 type Pattern = {
   inputs: string[];
   outputs: string[];
@@ -19,19 +21,6 @@ const noOverlap: Record<number, number[]> = {
   4: [0, 1, 2, 3, 5, 6, 7],
   9: [2],
 };
-
-const sum = (a: number, b: number) => a + b;
-
-const arrayContains = (array1: string[], array2: string[]): boolean => {
-  return array1.every((item) => array2.includes(item));
-};
-
-const compose =
-  <T>(functions: ((arg: T) => T)[]) =>
-  (arg: T) =>
-    functions.reduce((arg: T, func: (x: T) => T) => func(arg), arg);
-
-const clone = <T>(obj: T): T => JSON.parse(JSON.stringify(obj));
 
 const getSolvedDigits = (lines: Line[]): number[] =>
   lines.filter((line) => line[1].length === 1).flatMap((x) => x[1]);
@@ -80,9 +69,10 @@ const getSegments = (input: Line[], number: number) => {
   ];
   return result[0].split("");
 };
+
 const strategies = {
-  cantHold: (a: string[], b: string[]): boolean => arrayContains(b, a),
-  cantFitIn: (a: string[], b: string[]): boolean => arrayContains(a, b),
+  cantHold: (a: string[], b: string[]): boolean => arrayIncludes(b, a),
+  cantFitIn: (a: string[], b: string[]): boolean => arrayIncludes(a, b),
 };
 
 const reduceOverlap =

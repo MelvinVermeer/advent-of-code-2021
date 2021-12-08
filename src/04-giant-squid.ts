@@ -1,6 +1,6 @@
-type Board = number[][];
+import { sum } from "./shared";
 
-const sum = (a: number, b: number) => a + b;
+type Board = number[][];
 
 const hasCompleteColumn = (board: Board, numbers: number[]): boolean => {
   for (let columnIndex = 0; columnIndex < board.length; columnIndex++) {
