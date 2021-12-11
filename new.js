@@ -16,7 +16,7 @@ const cb = (err) => {
   if (err) throw err;
 };
 
-fs.copyFile("test/data/00.data.ts", `test/data/${newNumber}.data.ts`, cb);
+fs.copyFile("test/data/00", `test/data/${newNumber}`, cb);
 
 fs.copyFile("test/00.test.ts", `test/${newNumber}.test.ts`, cb);
 
@@ -30,4 +30,4 @@ shell(
   `sed -i "" "s!00-template!${newNumber}-${kebabTitle}!g" ./test/${newNumber}.test.ts`
 );
 
-shell(`sed -i "" "s!00.data!${newNumber}.data!g" ./test/${newNumber}.test.ts`);
+shell(`sed -i "" "s!data/00!data/${newNumber}!g" ./test/${newNumber}.test.ts`);
