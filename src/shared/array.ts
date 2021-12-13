@@ -30,3 +30,9 @@ export const deduplicate = <T>(
 
   return [...values];
 };
+
+export const printGrid = (grid: (number | string)[][]) => {
+  console.log(
+    grid.map((row) => row.map((cell) => cell.toString()).join("")).join("\n")
+  );
+};
