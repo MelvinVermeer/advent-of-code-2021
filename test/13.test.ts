@@ -1,4 +1,5 @@
 import { countDotsAfterFolding } from "../src/13-transparent-origami";
+import { countDotsAfterFolding as countAlternative } from "../src/13-transparent-origami-alternative";
 import { readFileSync } from "fs";
 
 const data = readFileSync("test/data/13", "utf8").split("\n");
@@ -58,25 +59,52 @@ describe("13 - Transparent Origami", () => {
   const { dots: sampleDots, instructions: sampleInstructions } =
     parseInstructions(sample);
   const { dots, instructions } = parseInstructions(data);
-
-  describe("Part 1", () => {
-    it("Sample", () => {
-      expect(
-        countDotsAfterFolding(sampleDots, [sampleInstructions[0]])
-      ).toEqual(17);
+  describe("Original", () => {
+    describe("Part 1", () => {
+      it("Sample", () => {
+        expect(
+          countDotsAfterFolding(sampleDots, [sampleInstructions[0]])
+        ).toEqual(17);
+      });
+      it("Answer", () => {
+        expect(countDotsAfterFolding(dots, [instructions[0]])).toEqual(695);
+      });
     });
-    it("Answer", () => {
-      expect(countDotsAfterFolding(dots, [instructions[0]])).toEqual(695);
+
+    describe("Part 2", () => {
+      it("Sample", () => {
+        expect(countDotsAfterFolding(sampleDots, sampleInstructions)).toEqual(
+          16
+        );
+      });
+
+      it("Answer - GJZGLUPJ", () => {
+        expect(countDotsAfterFolding(dots, instructions)).toEqual(89);
+      });
     });
   });
 
-  describe("Part 2", () => {
-    it("Sample", () => {
-      expect(countDotsAfterFolding(sampleDots, sampleInstructions)).toEqual(16);
+  describe("Alternative", () => {
+    describe("Part 1", () => {
+      it("Sample", () => {
+        expect(countAlternative(sampleDots, [sampleInstructions[0]])).toEqual(
+          17
+        );
+      });
+
+      it("Answer", () => {
+        expect(countAlternative(dots, [instructions[0]])).toEqual(695);
+      });
     });
 
-    it("Answer - GJZGLUPJ", () => {
-      expect(countDotsAfterFolding(dots, instructions)).toEqual(89);
+    describe("Part 2", () => {
+      it("Sample", () => {
+        expect(countAlternative(sampleDots, sampleInstructions)).toEqual(16);
+      });
+
+      it("Answer - GJZGLUPJ", () => {
+        expect(countAlternative(dots, instructions)).toEqual(89);
+      });
     });
   });
 });
