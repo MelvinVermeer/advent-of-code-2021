@@ -36,3 +36,11 @@ export const printGrid = (grid: (number | string)[][]) => {
     grid.map((row) => row.map((cell) => cell.toString()).join("")).join("\n")
   );
 };
+
+type StringOrArray<T> = {
+  [index: number]: T;
+  length: number;
+};
+
+export const first = <T>(array: StringOrArray<T>): T => array[0];
+export const last = <T>(array: StringOrArray<T>): T => array[array.length - 1];
